@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GRSYKitapEvi_Models.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,12 @@ namespace GRSYKitapevi_DataAccess.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base
             (options)
         {
-                
+          
+            
 
         }
+
+        public DbSet<Kategori> Kategoriler { get; set; }
 
     }
 }
