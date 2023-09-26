@@ -2,28 +2,30 @@
 
 namespace GRSYKitapevi_DataAccess.Migrations
 {
-    public partial class EkleKategoriTablosuDB : Migration
+    public partial class KitaplarTablosıDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Kategoriler",
+                name: "tb_Kitap",
                 columns: table => new
                 {
-                    KategoriId = table.Column<int>(type: "int", nullable: false)
+                    Kitap_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    KategoriAd = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    KitapAdi = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fiyat = table.Column<double>(type: "float", nullable: false),
+                    ISBN = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Kategoriler", x => x.KategoriId);
+                    table.PrimaryKey("PK_tb_Kitap", x => x.Kitap_Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Kategoriler");
+                name: "tb_Kitap");
         }
     }
 }

@@ -8,19 +8,17 @@ using System.Threading.Tasks;
 
 namespace GRSYKitapEvi_Models.Models
 {
+    [Table("tb_Yayinevi")]
+    public class Yayınevi
+    {
+
+        [Key]
+        public int YayınEvi_Id { get; set; }
+        public string YayınEviAdi { get; set; }
+        public string Lokasyon { get; set; }
 
 
-    [Table("tb_kategoriler")]
-    public class Kategori
-    {    
-
-
-        
-        public int KategoriId { get; set; }
-        public string KategoriAd  { get; set; }
-
-
-
+        public List<Kitap> Kitap { get; set; }
 
     }
-} 
+}

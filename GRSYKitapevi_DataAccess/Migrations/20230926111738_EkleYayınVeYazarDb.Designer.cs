@@ -4,14 +4,16 @@ using GRSYKitapevi_DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GRSYKitapevi_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230926111738_EkleYayınVeYazarDb")]
+    partial class EkleYayınVeYazarDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,44 +49,12 @@ namespace GRSYKitapevi_DataAccess.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KategoriId")
-                        .HasColumnType("int");
-
                     b.Property<string>("KitapAdi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KitapDetay_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Kitap_Id");
 
-                    b.HasIndex("KategoriId");
-
-                    b.HasIndex("KitapDetay_Id")
-                        .IsUnique();
-
                     b.ToTable("tb_Kitap");
-                });
-
-            modelBuilder.Entity("GRSYKitapEvi_Models.Models.KitapDetay", b =>
-                {
-                    b.Property<int>("KitapDetay_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BolumSayisi")
-                        .HasColumnType("int");
-
-                    b.Property<double>("KitapAgirlik")
-                        .HasColumnType("float");
-
-                    b.Property<int>("KitapSayfasi")
-                        .HasColumnType("int");
-
-                    b.HasKey("KitapDetay_Id");
-
-                    b.ToTable("KitapDetay");
                 });
 
             modelBuilder.Entity("GRSYKitapEvi_Models.Models.Tur", b =>
@@ -147,30 +117,6 @@ namespace GRSYKitapevi_DataAccess.Migrations
                     b.HasKey("Yazar_Id");
 
                     b.ToTable("tb_Yazar");
-                });
-
-            modelBuilder.Entity("GRSYKitapEvi_Models.Models.Kitap", b =>
-                {
-                    b.HasOne("GRSYKitapEvi_Models.Models.Kategori", "Kategori")
-                        .WithMany()
-                        .HasForeignKey("KategoriId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GRSYKitapEvi_Models.Models.KitapDetay", "KitapDetay")
-                        .WithOne("Kitap")
-                        .HasForeignKey("GRSYKitapEvi_Models.Models.Kitap", "KitapDetay_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Kategori");
-
-                    b.Navigation("KitapDetay");
-                });
-
-            modelBuilder.Entity("GRSYKitapEvi_Models.Models.KitapDetay", b =>
-                {
-                    b.Navigation("Kitap");
                 });
 #pragma warning restore 612, 618
         }
